@@ -3,3 +3,6 @@
 
 # Visit logs
 visits.log
+
+#executables
+*.exe

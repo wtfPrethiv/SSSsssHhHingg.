@@ -29,6 +29,12 @@ var playgroundPalette = []lipgloss.Color{
 
  
 type Styles struct {
+	// Renderer is the per-session Lip Gloss renderer. Building styles from
+	// this (instead of the package global) is what lets color work when the
+	// server runs without a TTY of its own (e.g. under systemd) — the color
+	// profile is detected from the connecting SSH client, not the server.
+	Renderer *lipgloss.Renderer
+
 	Logo    lipgloss.Style
 	Cursor  lipgloss.Style
 	Tagline lipgloss.Style
@@ -65,43 +71,45 @@ type Styles struct {
 }
 
  
-func NewStyles() Styles {
+func NewStyles(r *lipgloss.Renderer) Styles {
 	return Styles{
-		Logo:    lipgloss.NewStyle().Foreground(colorFg).Bold(true),
-		Cursor:  lipgloss.NewStyle().Foreground(colorRed),
-		Tagline: lipgloss.NewStyle().Foreground(colorMuted).Italic(true),
-		Hint:    lipgloss.NewStyle().Foreground(colorFaint),
+		Renderer: r,
 
-		App: lipgloss.NewStyle().Padding(1, 3),
+		Logo:    r.NewStyle().Foreground(colorFg).Bold(true),
+		Cursor:  r.NewStyle().Foreground(colorRed),
+		Tagline: r.NewStyle().Foreground(colorMuted).Italic(true),
+		Hint:    r.NewStyle().Foreground(colorFaint),
 
-		TabActive:   lipgloss.NewStyle().Foreground(colorRed).Bold(true).Underline(true).Padding(0, 1),
-		TabInactive: lipgloss.NewStyle().Foreground(colorMuted).Padding(0, 1),
-		TabGap:      lipgloss.NewStyle().Foreground(colorFaint),
+		App: r.NewStyle().Padding(1, 3),
 
-		Heading:   lipgloss.NewStyle().Foreground(colorRed).Bold(true),
-		Body:      lipgloss.NewStyle().Foreground(colorFg),
-		Muted:     lipgloss.NewStyle().Foreground(colorMuted),
-		Accent:    lipgloss.NewStyle().Foreground(colorRed),
-		ItemTitle: lipgloss.NewStyle().Foreground(colorFg).Bold(true),
-		ItemDesc:  lipgloss.NewStyle().Foreground(colorSubtle),
-		ItemMeta:  lipgloss.NewStyle().Foreground(colorFaint),
-		LinkLabel: lipgloss.NewStyle().Foreground(colorFg).Bold(true),
-		LinkURL:   lipgloss.NewStyle().Foreground(colorCyan).Underline(true),
-		Updated:   lipgloss.NewStyle().Foreground(colorMint),
-		Ascii:     lipgloss.NewStyle().Foreground(colorRedDim),
-		Selected:  lipgloss.NewStyle().Foreground(colorRed).Bold(true),
+		TabActive:   r.NewStyle().Foreground(colorRed).Bold(true).Underline(true).Padding(0, 1),
+		TabInactive: r.NewStyle().Foreground(colorMuted).Padding(0, 1),
+		TabGap:      r.NewStyle().Foreground(colorFaint),
 
-		ReaderTitle: lipgloss.NewStyle().Foreground(colorRed).Bold(true),
-		ReaderMeta:  lipgloss.NewStyle().Foreground(colorAmber),
-		ReaderBody:  lipgloss.NewStyle().Foreground(colorFg),
+		Heading:   r.NewStyle().Foreground(colorRed).Bold(true),
+		Body:      r.NewStyle().Foreground(colorFg),
+		Muted:     r.NewStyle().Foreground(colorMuted),
+		Accent:    r.NewStyle().Foreground(colorRed),
+		ItemTitle: r.NewStyle().Foreground(colorFg).Bold(true),
+		ItemDesc:  r.NewStyle().Foreground(colorSubtle),
+		ItemMeta:  r.NewStyle().Foreground(colorFaint),
+		LinkLabel: r.NewStyle().Foreground(colorFg).Bold(true),
+		LinkURL:   r.NewStyle().Foreground(colorCyan).Underline(true),
+		Updated:   r.NewStyle().Foreground(colorMint),
+		Ascii:     r.NewStyle().Foreground(colorRedDim),
+		Selected:  r.NewStyle().Foreground(colorRed).Bold(true),
 
-		PlayFrame: lipgloss.NewStyle().
+		ReaderTitle: r.NewStyle().Foreground(colorRed).Bold(true),
+		ReaderMeta:  r.NewStyle().Foreground(colorAmber),
+		ReaderBody:  r.NewStyle().Foreground(colorFg),
+
+		PlayFrame: r.NewStyle().
 			Border(lipgloss.RoundedBorder()).
 			BorderForeground(colorFaint),
-		PlayInfo: lipgloss.NewStyle().Foreground(colorMuted),
+		PlayInfo: r.NewStyle().Foreground(colorMuted),
 
-		Footer:     lipgloss.NewStyle().Foreground(colorFaint),
-		FooterKey:  lipgloss.NewStyle().Foreground(colorSubtle).Bold(true),
-		FooterDesc: lipgloss.NewStyle().Foreground(colorFaint),
+		Footer:     r.NewStyle().Foreground(colorFaint),
+		FooterKey:  r.NewStyle().Foreground(colorSubtle).Bold(true),
+		FooterDesc: r.NewStyle().Foreground(colorFaint),
 	}
 }

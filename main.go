@@ -83,7 +83,10 @@ func teaHandler(contentPath string, logger *log.Logger) bubbletea.Handler {
 			return nil, nil
 		}
 
-		return ui.NewRoot(content), []tea.ProgramOption{tea.WithAltScreen()}
+		// Build a renderer from the SSH session so Lip Gloss detects color
+		// support from the connecting client, not the server's own stdout.
+		renderer := bubbletea.MakeRenderer(s)
+		return ui.NewRoot(content, renderer), []tea.ProgramOption{tea.WithAltScreen()}
 	}
 }
 

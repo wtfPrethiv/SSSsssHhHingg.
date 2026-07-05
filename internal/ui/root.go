@@ -2,6 +2,7 @@ package ui
 
 import (
 	tea "github.com/charmbracelet/bubbletea"
+	"github.com/charmbracelet/lipgloss"
 
 	"pr3thiv-portfolio/internal/config"
 )
@@ -23,8 +24,8 @@ type Root struct {
 }
 
 
-func NewRoot(c *config.Content) Root {
-	styles := NewStyles()
+func NewRoot(c *config.Content, r *lipgloss.Renderer) Root {
+	styles := NewStyles(r)
 	return Root{
 		state:     statePreloader,
 		preloader: newPreloader(c.Name, styles),

@@ -338,7 +338,7 @@ func (m portfolio) readerView() string {
 		pct = 100
 	}
 
-	content := lipgloss.NewStyle().PaddingLeft(2).Render(m.reader.View())
+	content := m.styles.Renderer.NewStyle().PaddingLeft(2).Render(m.reader.View())
 
 	label := fmt.Sprintf(" %d%% read", pct)
 	barW := m.reader.Width - lipgloss.Width(label)
@@ -348,7 +348,7 @@ func (m portfolio) readerView() string {
 	filled := barW * pct / 100
 	bar := m.styles.Accent.Render(strings.Repeat("━", filled)) +
 		m.styles.TabGap.Render(strings.Repeat("━", barW-filled))
-	indicator := lipgloss.NewStyle().PaddingLeft(2).Render(bar + m.styles.ReaderMeta.Render(label))
+	indicator := m.styles.Renderer.NewStyle().PaddingLeft(2).Render(bar + m.styles.ReaderMeta.Render(label))
 
 	return lipgloss.JoinVertical(lipgloss.Left, content, indicator)
 }

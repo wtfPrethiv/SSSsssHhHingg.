@@ -172,7 +172,7 @@ func (m playground) view() string {
 	for y := 0; y < m.h; y++ {
 		for x := 0; x < m.w; x++ {
 			if idx := grid[y][x]; idx > 0 {
-				b.WriteString(lipgloss.NewStyle().Foreground(m.balls[idx-1].color).Render(ballGlyph))
+				b.WriteString(m.styles.Renderer.NewStyle().Foreground(m.balls[idx-1].color).Render(ballGlyph))
 			} else {
 				b.WriteByte(' ')
 			}
