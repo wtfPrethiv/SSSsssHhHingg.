@@ -5,7 +5,7 @@ A minimal portfolio you visit over SSH. It's a Go program built on the
 Wish, Harmonica, and Log.
 
 ```
-ssh localhost -p 2222
+ssh ssh.pr3thivv.lol -p 2222
 ```
 
 ## What it does
