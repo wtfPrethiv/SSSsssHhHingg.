@@ -1,0 +1,82 @@
+name: "Pr3thiv"
+tagline: "reasercher · developer · terminal enjoyer"
+last_updated: "2026-07-05"
+about: |
+  hiiiiii i'm prethivv. i'm the kind of person who gets curious about
+  something and then spends weeks obsessing over it. that's how i ended up
+  bouncing between AI/ML, quantum computing, rust, C++, neural networks, and
+  the occasional web-pentesting rabbit hole.
+
+  i like building things from scratch just to understand why they work
+  instead of only how they work. i genuinely love research, and i'm aspiring
+  to build a career around it.
+
+  i enjoy working on ideas that mix physics, math, and code. that includes
+  things like quantum gates, wave-packet simulations, and the strange AI
+  experiments i end up creating when a "what if i tried this" thought gets
+  stuck in my head.
+
+  outside all that, i'm trying to keep up with fitness up!, and occasionally
+  gaming when my brain wants a break. i'm not the most outdoorsy person yet,
+  but i'm working on it.
+
+projects:
+  - name: "Mechanistic-Interpretability-of-Grokking-in-Transformers"
+    description: "Reverse-engineering how a transformer learns modular arithmetic - Extending Nanda et al. (2023) grokking findings via ablations, Fourier analysis & logit lens."
+    url: "https://github.com/wtfPrethiv/Mechanistic-Interpretability-of-Grokking-in-Transformers"
+  - name: "Black-Hole-Sim-but-its-just-PINNs [pvt]"
+    description: "A real-time black hole renderer using a PINN surrogate to accelerate geodesic ray tracing - built with Rust, CUDA, and PyTorch."
+    url: "https://github.com/wtfPrethiv/Black-Hole-Sim-but-its-just-PINNs."
+  - name: "Attention-is-all-you-need-ReImpl"
+    description: "A clean, from-scratch PyTorch reimplementation of the original Transformer architecture from the 2017 “Attention Is All You Need” paper, built to deeply understand self-attention, positional encodings, and encoder-decoder mechanics. "
+    url: "https://github.com/wtfPrethiv/Attention-is-all-you-need-ReImpl."
+
+blogs:
+  - title: "Grokking-in-Transformers - Extending Nanda et al. (2023)"
+    date: "2026-05-01"
+    url: "will be updated sooon"
+    body: |
+      One natural extension of Nanda et al.'s work on grokking is to move beyond simple modular addition and multiplication to a richer arithmetic task: f(a, b) = (a² + b²) mod 113. Although this function is still deterministic and well-defined over a finite field, the quadratic terms introduce substantially more complex structure than linear modular arithmetic.
+      Modular addition is a linear operation with a sparse Fourier representation, making it relatively easy for transformers to discover the underlying algorithm. In contrast, squaring introduces nonlinear interactions that distribute information across a much richer set of Fourier frequencies. Rather than learning a small collection of dominant frequency components, the model must recover a more intricate spectral decomposition before it can generalize.
+
+      This makes the task an ideal setting for studying grokking. Instead of asking whether a transformer can simply memorize a modular function, it allows us to investigate how increasing mathematical complexity influences the transition from memorization to algorithmic generalization.
+
+      The analysis is grounded in discrete Fourier analysis over finite groups. Any function defined on Z₁₁₃ can be expressed as a linear combination of Fourier basis functions, revealing the frequencies that encode the computation. Prior work showed that transformers learning modular arithmetic gradually align their internal representations with these Fourier components during grokking.
+
+      By extending the task to (a² + b²) mod 113, this project investigates whether the same spectral mechanisms continue to explain grokking when the target function has significantly richer frequency content. Understanding these dynamics provides insight into how transformers discover algorithms rather than simply memorize examples.
+
+  - title: "Evaluating the Robustness of Google's SynthID using Autoencoders"
+    date: "2026-3-14"
+    url: "will be updated sooon"
+    body: |
+      TGoogle's SynthID embeds imperceptible provenance signals into AI-generated images, enabling reliable identification even after common image edits and transformations. As AI-generated content becomes increasingly prevalent, understanding the robustness of SynthID under modern generative pipelines is an important research problem.
+
+      This project investigates how latent-space autoencoders and diffusion-based image reconstruction models affect SynthID detection. The objective is to study how learned image representations, denoising processes, and reconstruction pipelines interact with embedded provenance signals while preserving perceptual image quality.
+      
+      The work involves experimenting with different autoencoder architectures, latent compression strategies, and diffusion-based restoration models to evaluate their influence on image fidelity and SynthID detectability. Alongside model development, I am exploring quantitative metrics that measure reconstruction quality and the robustness of SynthID under neural image transformations.
+      
+      This research is still highly experimental and remains a work in progress. I am actively exploring different model architectures, training objectives, and evaluation methodologies to better understand the interaction between modern generative models and Google's SynthID.
+
+  - title: "Approximating N-Body Dynamics using PINNs"
+    date: "2025-03-14"
+    url: "will be updated sooon"
+    body: |
+      The N-body problem is one of the oldest and most challenging problems in computational physics. Given N bodies interacting through gravity, the objective is to predict their trajectories over time by solving a coupled system of nonlinear differential equations. While analytical solutions exist for the two-body case, no general closed-form solution exists for three or more bodies, making numerical methods the standard approach.
+
+      This project explores the use of Physics-Informed Neural Networks (PINNs) as an alternative to traditional numerical integrators. Rather than explicitly stepping through time with methods such as Runge-Kutta or Verlet integration, a neural network is trained to approximate the trajectories while simultaneously satisfying Newton's equations of motion through its loss function.
+      
+      The key idea behind PINNs is to embed the governing physics directly into the optimization process. Automatic differentiation is used to compute time derivatives of the network's predictions, allowing the residuals of the differential equations to be minimized alongside the initial and boundary conditions. As a result, the model learns solutions that are not only data-consistent but also physically valid.
+      
+      The N-body problem presents a particularly challenging benchmark for PINNs due to its highly nonlinear interactions, long-term error accumulation, and sensitivity to initial conditions. Small perturbations can lead to drastically different trajectories, requiring the network to accurately model complex dynamical behavior while preserving physical quantities such as momentum and energy.
+      
+      This project investigates whether PINNs can efficiently learn gravitational dynamics and how their accuracy, stability, and computational cost compare with classical numerical solvers. Understanding these trade-offs may provide insight into the viability of neural differential equation methods for solving complex physical systems and accelerating large-scale scientific simulations.
+
+links:
+  - label: "GitHub"
+    url: "https://github.com/pr3thiv"
+  - label: "X / Twitter"
+    url: "https://x.com/pr3thiv"
+  - label: "LinkedIn"
+    url: "https://linkedin.com/in/pr3thiv"
+  - label: "Email"
+    url: "mailto:hello@pr3thiv.dev"

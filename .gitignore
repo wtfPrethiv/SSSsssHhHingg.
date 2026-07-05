@@ -1,0 +1,5 @@
+# SSH keys
+.ssh/
+
+# Visit logs
+visits.log
