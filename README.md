@@ -1,4 +1,4 @@
-# Pr3thiv — SSH Terminal Portfolio
+# SSSsssHhHingg. — SSH Terminal Portfolio
 
 A minimal portfolio you visit over SSH. It's a Go program built on the
 [Charmbracelet](https://charm.sh) stack — Bubble Tea, Bubbles, Lip Gloss,
